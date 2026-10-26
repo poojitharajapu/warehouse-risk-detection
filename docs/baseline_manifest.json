@@ -1,0 +1,145 @@
+{
+  "generator_version": "0.1.0",
+  "seed": 20261022,
+  "configuration": {
+    "warehouses": 10,
+    "zones_per_warehouse": 10,
+    "sensors_per_zone": 5,
+    "readings_per_sensor": 2000,
+    "lots_per_warehouse": 1000,
+    "lot_quantity": 9,
+    "seed": 20261022,
+    "start": "2026-01-01T00:00:00+00:00",
+    "interval_minutes": 15,
+    "door_open_limit_seconds": 300,
+    "inject_anomalies": true
+  },
+  "generated_at": "2026-10-26T17:10:28.484397+00:00",
+  "row_counts": {
+    "warehouses": 10,
+    "zones": 100,
+    "sensors": 500,
+    "sensor_readings": 1000000,
+    "door_events": 100,
+    "inventory_lots": 10000,
+    "storage_requirements": 100,
+    "alarms": 2,
+    "inspections": 1,
+    "remediations": 1,
+    "alarm_lots": 99,
+    "sensor_zone_assignments": 501,
+    "ground_truth": 4
+  },
+  "canonical_sha256": {
+    "warehouses": "8c88c24fda0aebb504e55bc7662d4f1db71f4a85d430901f8af190e392283909",
+    "zones": "33b20232f6a3cc59bdd6715388b28d13197c19e56d305ecf05065fad236c0067",
+    "sensors": "be572eae1d871479b466139f12bc9aff8ae5ccd7e0665d22ec7145bad9a7e1a7",
+    "sensor_readings": "2d487945b9e1b8908c84345925fb03fd4b08ba17d6d18c1156f29d57fadcedb3",
+    "door_events": "685c561ffb85ca155b4cd27e465f92e40fa58aa4c6a6ce136106613f019ad76e",
+    "inventory_lots": "70a5494a6ae39511122c1c8014392f2aaffd8d1a7e2883df2007ba125b524947",
+    "storage_requirements": "d15ec5b456e93f3e84d864c059d71369f4888a8a09742da03b7c85d71c475924",
+    "alarms": "fd31ec1e03894055643118409b2221d549ce1e694a3292489a50b07d2a1f0a1a",
+    "inspections": "494d2923653ee4f1147f962fd1d51b966beb30b93013363039368b3cf815cd31",
+    "remediations": "3e18e9597e9728190a6bac708cc4e1c7c9068af68fc8d6352ad054b6698f1af0",
+    "alarm_lots": "ffc2c46ca6b9de191a45300360cebe7854d860cb34f9cf8536a088a23986942f",
+    "sensor_zone_assignments": "6c3040038d2e1839d9d1ced4fdcc0d8845352440a409bc0085b825c99a94ef2b",
+    "ground_truth": "454311695d5d822769bfc775a750872b5b41281b389575c59b1e9cbb89213baa"
+  },
+  "schemas": {
+    "warehouses": [
+      "warehouse_id",
+      "name",
+      "region",
+      "capacity_units"
+    ],
+    "zones": [
+      "zone_id",
+      "warehouse_id",
+      "name",
+      "zone_type",
+      "capacity_units"
+    ],
+    "sensors": [
+      "sensor_id",
+      "zone_id",
+      "sensor_type",
+      "unit",
+      "status"
+    ],
+    "sensor_readings": [
+      "reading_id",
+      "sensor_id",
+      "zone_id",
+      "timestamp",
+      "value",
+      "unit",
+      "quality"
+    ],
+    "door_events": [
+      "event_id",
+      "zone_id",
+      "opened_at",
+      "closed_at",
+      "duration_seconds"
+    ],
+    "inventory_lots": [
+      "lot_id",
+      "warehouse_id",
+      "zone_id",
+      "product_class",
+      "quantity",
+      "received_at",
+      "expires_at"
+    ],
+    "storage_requirements": [
+      "requirement_id",
+      "zone_id",
+      "product_class",
+      "min_temp_c",
+      "max_temp_c",
+      "min_humidity_pct",
+      "max_humidity_pct"
+    ],
+    "alarms": [
+      "alarm_id",
+      "zone_id",
+      "source_sensor_id",
+      "incident_at",
+      "rule_id",
+      "severity",
+      "status"
+    ],
+    "inspections": [
+      "inspection_id",
+      "alarm_id",
+      "inspected_at",
+      "outcome"
+    ],
+    "remediations": [
+      "remediation_id",
+      "inspection_id",
+      "action",
+      "status"
+    ],
+    "alarm_lots": [
+      "alarm_id",
+      "lot_id"
+    ],
+    "sensor_zone_assignments": [
+      "sensor_id",
+      "zone_id",
+      "valid_from",
+      "valid_to"
+    ],
+    "ground_truth": [
+      "scenario_id",
+      "entity_id",
+      "expected_issue",
+      "expected_label",
+      "details"
+    ]
+  },
+  "deterministic_comparison_excludes": [
+    "generated_at"
+  ]
+}

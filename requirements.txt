@@ -1,0 +1,2 @@
+# Core generator and validation use only the Python standard library.
+# Install development tools with: python -m pip install -e ".[dev]"

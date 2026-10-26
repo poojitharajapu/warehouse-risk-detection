@@ -1,0 +1,225 @@
+{
+  "overall_status": "PASS",
+  "record_counts": {
+    "warehouses": 10,
+    "zones": 100,
+    "sensors": 500,
+    "sensor_readings": 1000000,
+    "door_events": 100,
+    "inventory_lots": 10000,
+    "storage_requirements": 100,
+    "alarms": 2,
+    "inspections": 1,
+    "remediations": 1,
+    "alarm_lots": 99,
+    "sensor_zone_assignments": 501,
+    "ground_truth": 4
+  },
+  "checks": [
+    {
+      "check": "warehouses.primary_key_unique",
+      "status": "PASS",
+      "details": "10 rows"
+    },
+    {
+      "check": "zones.primary_key_unique",
+      "status": "PASS",
+      "details": "100 rows"
+    },
+    {
+      "check": "sensors.primary_key_unique",
+      "status": "PASS",
+      "details": "500 rows"
+    },
+    {
+      "check": "sensor_readings.primary_key_unique",
+      "status": "PASS",
+      "details": "Verified across 1000000 streamed rows"
+    },
+    {
+      "check": "door_events.primary_key_unique",
+      "status": "PASS",
+      "details": "100 rows"
+    },
+    {
+      "check": "inventory_lots.primary_key_unique",
+      "status": "PASS",
+      "details": "10000 rows"
+    },
+    {
+      "check": "storage_requirements.primary_key_unique",
+      "status": "PASS",
+      "details": "100 rows"
+    },
+    {
+      "check": "alarms.primary_key_unique",
+      "status": "PASS",
+      "details": "2 rows"
+    },
+    {
+      "check": "inspections.primary_key_unique",
+      "status": "PASS",
+      "details": "1 rows"
+    },
+    {
+      "check": "remediations.primary_key_unique",
+      "status": "PASS",
+      "details": "1 rows"
+    },
+    {
+      "check": "zones.warehouse_fk",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "check": "zones.enumerated_type",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "check": "sensors.zone_fk",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "check": "sensors.enumerated_type",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "check": "readings.sensor_fk",
+      "status": "PASS",
+      "details": "Verified across 1000000 streamed rows"
+    },
+    {
+      "check": "readings.sensor_zone_consistency",
+      "status": "PASS",
+      "details": "Verified across 1000000 streamed rows"
+    },
+    {
+      "check": "readings.required_numeric",
+      "status": "PASS",
+      "details": "Verified across 1000000 streamed rows"
+    },
+    {
+      "check": "readings.timestamp_format",
+      "status": "PASS",
+      "details": "Verified across 1000000 streamed rows"
+    },
+    {
+      "check": "readings.sensor_timestamp_unique",
+      "status": "PASS",
+      "details": "Verified across 1000000 streamed rows"
+    },
+    {
+      "check": "lots.warehouse_zone_fk",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "check": "lots.warehouse_zone_consistency",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "check": "lots.dwell_order",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "check": "door.duration_reconciles",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "check": "door.chronological_order",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "check": "storage_requirement.bounds",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "check": "storage_requirement.zone_cardinality",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "check": "alarm.enumerated_status",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "check": "inspection.enumerated_outcome",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "check": "remediation.enumerated_status",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "check": "alarm_lots.fks",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "check": "lifecycle.fks",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "check": "sensor_zone_mapping.unique",
+      "status": "EXPECTED_ANOMALY",
+      "details": "SNS-ZONE-WH-001-001-TEMP-01"
+    },
+    {
+      "check": "zone.capacity",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "check": "storage.compatibility",
+      "status": "EXPECTED_ANOMALY",
+      "details": "LOT-2026-000001"
+    },
+    {
+      "check": "alarms.affected_inventory_link",
+      "status": "EXPECTED_ANOMALY",
+      "details": "ALM-NEG-04"
+    },
+    {
+      "check": "alarms.affected_lots_match_zone_and_time",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "check": "NEG-01.detected",
+      "status": "PASS",
+      "details": "LOT-2026-000001"
+    },
+    {
+      "check": "NEG-02.detected",
+      "status": "PASS",
+      "details": "SNS-ZONE-WH-001-001-TEMP-01"
+    },
+    {
+      "check": "NEG-03.detected",
+      "status": "PASS",
+      "details": "SNS-ZONE-WH-001-001-TEMP-01"
+    },
+    {
+      "check": "NEG-04.detected",
+      "status": "PASS",
+      "details": "ALM-NEG-04"
+    }
+  ],
+  "passed_checks": 37,
+  "expected_anomaly_checks": 3,
+  "failed_checks": 0,
+  "deliberate_anomaly_count": 4,
+  "unexpected_errors": []
+}
