@@ -14,6 +14,16 @@
 - Date: 2026-10-26
 - Purpose: Complete the remaining implementation, run the baseline, and verify reproducibility.
 - Actual prompt: “see do it all”
-- Review note: The user reviewed the implementation through the conversation; automated checks and generation evidence are recorded separately. This note does not claim manual review of every code line.
+- Review note: After asking whether the project was complete, the user directed the agent to continue. Automated checks and generation evidence were run by the coding agent; the user did not claim line-by-line review.
 
 No other AI tools were used in this implementation session. The challenge attachment is not copied into the repository because it may be confidential; the actual direct follow-up prompts are retained here.
+
+Historical prompt limitation: complete prompt logs from all earlier sessions/tools are not available in this workspace. The entries preserve the attachment titles, dates, and direct follow-up messages available in this conversation; they are not a complete export of prior AI history.
+
+## Sequence 3 — Occupancy, state history, and submission readiness improvements
+
+- Tool: ChatGPT / Codex coding agent
+- Date: 2026-10-27
+- Purpose: Add occupancy monitoring and state history, strengthen alert traceability, validation, tests, dashboard, and submission preparation.
+- Prompt record: The user provided the attachment titled “Task: Improve My Existing Warehouse Risk Detection Project for the YottaFlex.ai Code Challenge”. The full challenge text is not duplicated here because it may be confidential. This record preserves its title, date, tool, and purpose without claiming that unavailable historical prompt logs are complete.
+- Review note: Code and documentation changes were made by the coding agent at the user's direction. Test and generator commands were executed by the agent; this file does not claim independent line-by-line review by the user.

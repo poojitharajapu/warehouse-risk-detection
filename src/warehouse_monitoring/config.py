@@ -14,6 +14,10 @@ class Config:
     start: str = "2026-01-01T00:00:00+00:00"
     interval_minutes: int = 15
     door_open_limit_seconds: int = 300
+    occupancy_samples_per_zone: int = 24
+    cold_zone_occupancy_limit: int = 20
+    ambient_zone_occupancy_limit: int = 50
+    occupancy_anomaly_excess_people: int = 5
     inject_anomalies: bool = True
 
     @property
@@ -22,6 +26,8 @@ class Config:
     def sensors(self): return self.zones * self.sensors_per_zone
     @property
     def readings(self): return self.sensors * self.readings_per_sensor
+    @property
+    def occupancy_readings(self): return self.zones * self.occupancy_samples_per_zone
     @property
     def lots(self): return self.warehouses * self.lots_per_warehouse
 

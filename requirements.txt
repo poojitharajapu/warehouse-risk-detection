@@ -1,2 +1,3 @@
-# Core generator and validation use only the Python standard library.
-# Install development tools with: python -m pip install -e ".[dev]"
+# Core generator and validator use only the Python standard library.
+# Install tests with: python -m pip install -e ".[dev]"
+# Install the dashboard with: python -m pip install -e ".[dashboard]"

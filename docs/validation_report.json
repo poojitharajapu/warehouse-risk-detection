@@ -5,15 +5,17 @@
     "zones": 100,
     "sensors": 500,
     "sensor_readings": 1000000,
+    "occupancy_readings": 2400,
     "door_events": 100,
     "inventory_lots": 10000,
     "storage_requirements": 100,
-    "alarms": 2,
-    "inspections": 1,
-    "remediations": 1,
-    "alarm_lots": 99,
+    "alarms": 7,
+    "inspections": 7,
+    "remediations": 7,
+    "alarm_lots": 100,
     "sensor_zone_assignments": 501,
-    "ground_truth": 4
+    "state_history": 42,
+    "ground_truth": 5
   },
   "checks": [
     {
@@ -37,6 +39,11 @@
       "details": "Verified across 1000000 streamed rows"
     },
     {
+      "check": "occupancy_readings.primary_key_unique",
+      "status": "PASS",
+      "details": "2400 rows"
+    },
+    {
       "check": "door_events.primary_key_unique",
       "status": "PASS",
       "details": "100 rows"
@@ -54,17 +61,22 @@
     {
       "check": "alarms.primary_key_unique",
       "status": "PASS",
-      "details": "2 rows"
+      "details": "7 rows"
     },
     {
       "check": "inspections.primary_key_unique",
       "status": "PASS",
-      "details": "1 rows"
+      "details": "7 rows"
     },
     {
       "check": "remediations.primary_key_unique",
       "status": "PASS",
-      "details": "1 rows"
+      "details": "7 rows"
+    },
+    {
+      "check": "state_history.primary_key_unique",
+      "status": "PASS",
+      "details": "42 rows"
     },
     {
       "check": "zones.warehouse_fk",
@@ -73,6 +85,11 @@
     },
     {
       "check": "zones.enumerated_type",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "check": "zones.occupancy_capacity_positive",
       "status": "PASS",
       "details": ""
     },
@@ -110,6 +127,31 @@
       "check": "readings.sensor_timestamp_unique",
       "status": "PASS",
       "details": "Verified across 1000000 streamed rows"
+    },
+    {
+      "check": "occupancy.zone_fk",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "check": "occupancy.timestamp_format",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "check": "occupancy.required_values",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "check": "occupancy.zone_timestamp_unique",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "check": "ground_truth.composite_unique",
+      "status": "PASS",
+      "details": ""
     },
     {
       "check": "lots.warehouse_zone_fk",
@@ -152,6 +194,21 @@
       "details": ""
     },
     {
+      "check": "alarm.trace_fields",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "check": "alarm.zone_warehouse_and_sensor_fks",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "check": "alarm.timestamp_format",
+      "status": "PASS",
+      "details": ""
+    },
+    {
       "check": "inspection.enumerated_outcome",
       "status": "PASS",
       "details": ""
@@ -162,7 +219,27 @@
       "details": ""
     },
     {
+      "check": "remediation.creation_before_transition",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "check": "lifecycle.dates_ordered",
+      "status": "PASS",
+      "details": ""
+    },
+    {
       "check": "alarm_lots.fks",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "check": "alarm_lots.unique_pair",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "check": "sensor_zone_assignments.fks_and_unique",
       "status": "PASS",
       "details": ""
     },
@@ -215,11 +292,46 @@
       "check": "NEG-04.detected",
       "status": "PASS",
       "details": "ALM-NEG-04"
+    },
+    {
+      "check": "NEG-05.detected",
+      "status": "PASS",
+      "details": "OCC-ZONE-WH-001-001-0024"
+    },
+    {
+      "check": "occupancy.capacity",
+      "status": "EXPECTED_ANOMALY",
+      "details": "OCC-ZONE-WH-001-001-0024"
+    },
+    {
+      "check": "state_history.entity_fks",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "check": "state_history.transitions_valid",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "check": "state_history.timestamp_order",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "check": "state_history.current_state_consistent",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "check": "state_history.multiple_events_retained",
+      "status": "PASS",
+      "details": ""
     }
   ],
-  "passed_checks": 37,
-  "expected_anomaly_checks": 3,
+  "passed_checks": 58,
+  "expected_anomaly_checks": 4,
   "failed_checks": 0,
-  "deliberate_anomaly_count": 4,
+  "deliberate_anomaly_count": 5,
   "unexpected_errors": []
 }

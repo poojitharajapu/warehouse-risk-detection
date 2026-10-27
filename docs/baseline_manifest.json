@@ -12,38 +12,46 @@
     "start": "2026-01-01T00:00:00+00:00",
     "interval_minutes": 15,
     "door_open_limit_seconds": 300,
+    "occupancy_samples_per_zone": 24,
+    "cold_zone_occupancy_limit": 20,
+    "ambient_zone_occupancy_limit": 50,
+    "occupancy_anomaly_excess_people": 5,
     "inject_anomalies": true
   },
-  "generated_at": "2026-10-26T17:10:28.484397+00:00",
+  "generated_at": "2026-10-27T15:08:42.977031+00:00",
   "row_counts": {
     "warehouses": 10,
     "zones": 100,
     "sensors": 500,
     "sensor_readings": 1000000,
+    "occupancy_readings": 2400,
     "door_events": 100,
     "inventory_lots": 10000,
     "storage_requirements": 100,
-    "alarms": 2,
-    "inspections": 1,
-    "remediations": 1,
-    "alarm_lots": 99,
+    "alarms": 7,
+    "inspections": 7,
+    "remediations": 7,
+    "alarm_lots": 100,
     "sensor_zone_assignments": 501,
-    "ground_truth": 4
+    "state_history": 42,
+    "ground_truth": 5
   },
   "canonical_sha256": {
     "warehouses": "8c88c24fda0aebb504e55bc7662d4f1db71f4a85d430901f8af190e392283909",
-    "zones": "33b20232f6a3cc59bdd6715388b28d13197c19e56d305ecf05065fad236c0067",
+    "zones": "190adbe05bc86279bad2d5838eece0225e39ddd23f9cb9d55c8da33a938b72e6",
     "sensors": "be572eae1d871479b466139f12bc9aff8ae5ccd7e0665d22ec7145bad9a7e1a7",
     "sensor_readings": "2d487945b9e1b8908c84345925fb03fd4b08ba17d6d18c1156f29d57fadcedb3",
+    "occupancy_readings": "f052a1635adf683e3f62ae21241ac7f959e2e10a5439092fa2a8dcecc0a4e230",
     "door_events": "685c561ffb85ca155b4cd27e465f92e40fa58aa4c6a6ce136106613f019ad76e",
     "inventory_lots": "70a5494a6ae39511122c1c8014392f2aaffd8d1a7e2883df2007ba125b524947",
     "storage_requirements": "d15ec5b456e93f3e84d864c059d71369f4888a8a09742da03b7c85d71c475924",
-    "alarms": "fd31ec1e03894055643118409b2221d549ce1e694a3292489a50b07d2a1f0a1a",
-    "inspections": "494d2923653ee4f1147f962fd1d51b966beb30b93013363039368b3cf815cd31",
-    "remediations": "3e18e9597e9728190a6bac708cc4e1c7c9068af68fc8d6352ad054b6698f1af0",
-    "alarm_lots": "ffc2c46ca6b9de191a45300360cebe7854d860cb34f9cf8536a088a23986942f",
-    "sensor_zone_assignments": "6c3040038d2e1839d9d1ced4fdcc0d8845352440a409bc0085b825c99a94ef2b",
-    "ground_truth": "454311695d5d822769bfc775a750872b5b41281b389575c59b1e9cbb89213baa"
+    "alarms": "d3ef85e3dd6a5501755e5138ddd13b71e1f0862401ad748d12d7f230c11d09c6",
+    "inspections": "ae7e5a94759f89b059f74596cb2b540a2375476eef946e5b2f3a020153e63f79",
+    "remediations": "ef9fa83ccf0ae7eb0e3de7c6e17a6359ca3785e556f7a2c38532c54d5cd4baf6",
+    "alarm_lots": "d3557a0b7a2ba01bda70e5e87d0baaf9129e68b33d5cee0b1ddbee3a64dca65e",
+    "sensor_zone_assignments": "3e97fa85d9d8c785954d835319b14b77c2e49f5554f26aaaf6ca07568a4069c8",
+    "state_history": "4cfa046900367300149d7b933cdd596e674672d0acc9b9ad97e17c984e338089",
+    "ground_truth": "58539a9e2cad6893586a07253fd6483643e266deeb4abf363bb968619dd3ef63"
   },
   "schemas": {
     "warehouses": [
@@ -57,7 +65,8 @@
       "warehouse_id",
       "name",
       "zone_type",
-      "capacity_units"
+      "capacity_units",
+      "occupancy_capacity_persons"
     ],
     "sensors": [
       "sensor_id",
@@ -73,6 +82,14 @@
       "timestamp",
       "value",
       "unit",
+      "quality"
+    ],
+    "occupancy_readings": [
+      "occupancy_reading_id",
+      "zone_id",
+      "timestamp",
+      "people_count",
+      "measurement_method",
       "quality"
     ],
     "door_events": [
@@ -103,21 +120,29 @@
     "alarms": [
       "alarm_id",
       "zone_id",
+      "warehouse_id",
       "source_sensor_id",
+      "source_record_id",
       "incident_at",
+      "detection_timestamp",
       "rule_id",
+      "risk_type",
       "severity",
+      "explanation",
+      "inventory_impact_expected",
       "status"
     ],
     "inspections": [
       "inspection_id",
       "alarm_id",
       "inspected_at",
-      "outcome"
+      "outcome",
+      "status"
     ],
     "remediations": [
       "remediation_id",
       "inspection_id",
+      "created_at",
       "action",
       "status"
     ],
@@ -129,7 +154,17 @@
       "sensor_id",
       "zone_id",
       "valid_from",
-      "valid_to"
+      "valid_to",
+      "assignment_reason"
+    ],
+    "state_history": [
+      "history_id",
+      "entity_type",
+      "entity_id",
+      "previous_state",
+      "new_state",
+      "event_timestamp",
+      "reason"
     ],
     "ground_truth": [
       "scenario_id",

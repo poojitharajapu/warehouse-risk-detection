@@ -1,6 +1,6 @@
 import argparse, json
 from .config import Config
-from .generator import generate, generate_core, iter_readings, finalize
+from .generator import generate, generate_core, generate_occupancy, iter_readings, finalize
 from .rules import detect, alarm_for_reading, record_alarm
 from .validation import validate
 from .io import export, write_reading_stream
@@ -12,6 +12,7 @@ def main():
     args=p.parse_args(); cfg=Config.small(args.seed) if args.size=="small" else Config.baseline(args.seed)
     if args.size=="baseline":
         tables=generate_core(cfg)
+        generate_occupancy(tables,cfg)
         requirements={x['zone_id']:x for x in tables['storage_requirements']}
         def derive_alarm(row):
             classification=alarm_for_reading(row,requirements[row['zone_id']])
@@ -19,6 +20,7 @@ def main():
         streamed=write_reading_stream(tables,iter_readings(tables,cfg),args.out,on_row=derive_alarm)
         finalize(tables,cfg)
         detections=detect(tables); detections['issues'].extend(streamed['gaps'])
+        for alert in detections['alarms']+detections['issues']: record_alarm(tables,alert,alert)
         report=validate(tables,detections)
         report['record_counts']['sensor_readings']=streamed['count']
         report['checks']=[dict(x,details=f"Verified across {streamed['count']} streamed rows") if x['check'].startswith('readings.') or x['check']=='sensor_readings.primary_key_unique' else x for x in report['checks']]
